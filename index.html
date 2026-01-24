@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SBS 아카데미 오리엔테이션</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+
+    <style>
+        /* --- 디자인 시스템 --- */
+        :root {
+            --font-main: 'Pretendard', sans-serif;
+            --bg-color: #F8F9FA;
+            --surface: #FFFFFF;
+            --text-primary: #191F28;
+            --text-secondary: #8B95A1;
+            --border: #E5E8EB;
+            --accent: #191F28; /* 시크한 블랙 */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* --- 페이지 공통 설정 --- */
+        .page {
+            display: none; /* 기본적으로 모든 페이지 숨김 */
+            min-height: 100vh;
+            padding: 24px;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .page.active {
+            display: block; /* 활성화된 페이지만 보임 */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- [페이지 1] 홈 화면 디자인 --- */
+        .home-header {
+            padding: 60px 0 40px;
+        }
+
+        .brand-logo {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .main-title {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.3;
+            color: var(--text-primary);
+        }
+
+        /* 메뉴 카드 그리드 */
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .menu-card {
+            background: var(--surface);
+            padding: 24px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .menu-card:active {
+            transform: scale(0.98);
+            background-color: #FAFAFA;
+        }
+
+        .card-text h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .card-text p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .arrow-icon {
+            font-size: 20px;
+            color: #D1D5DB;
+        }
+
+        /* --- [페이지 2~4] 서브 페이지 공통 --- */
+        .sub-header {
+            display: flex;
+            align-items: center;
+            height: 60px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            margin-left: -24px;
+            margin-right: -24px;
+            padding: 0 24px;
+            background: rgba(255,255,255,0.9);
+            position: sticky;
+            top: 0;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .content-box {
+            background: var(--surface);
+            padding: 30px 24px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            margin-bottom: 20px;
+        }
+
+        .info-list li {
+            list-style: none;
+            position: relative;
+            padding-left: 14px;
+            margin-bottom: 12px;
+            color: #4B5563;
+        }
+
+        .info-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 4px;
+            height: 4px;
+            background: var(--text-primary);
+            border-radius: 50%;
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: var(--text-primary);
+            background: linear-gradient(to top, #E5E8EB 40%, transparent 40%);
+        }
+
+        /* 하단 연락처 (홈 화면용) */
+        .contact-area {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .mentor-btn {
+            display: inline-block;
+            background: var(--text-primary);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="home" class="page active">
+        <header class="home-header">
+            <span class="brand-logo">SBS ACADEMY</span>
+            <h1 class="main-title">안녕하세요.<br>수강생 여러분의<br>시작을 환영합니다.</h1>
+        </header>
+
+        <div class="menu-list">
+            <div class="menu-card" onclick="goToPage('page-prep')">
+                <div class="card-text">
+                    <h3>수업 준비물</h3>
+                    <p>Class Preparation</p>
+                </div>
+                <div class="arrow-icon">→</div>
+            </div>
+
+            <div class="menu-card" onclick="goToPage('page-rule')">
+                <div class="card-text">
+                    <h3>학원 생활 안내</h3>
+                    <p>Academy Rules</p>
+                </div>
+                <div class="arrow-icon">→</div>
+            </div>
+
+            <div class="menu-card" onclick="goToPage('page-map')">
+                <div class="card-text">
+                    <h3>오시는 길</h3>
+                    <p>Location Info</p>
+                </div>
+                <div class="arrow-icon">→</div>
+            </div>
+        </div>
+
+        <div class="contact-area">
+            <p style="font-size:13px; color:#8B95A1; margin-bottom:15px;">문의사항이 있으신가요?</p>
+            <a href="tel:010-0000-0000" class="mentor-btn">김태욱 부장에게 전화하기</a>
+        </div>
+    </div>
+
+
+    <div id="page-prep" class="page">
+        <div class="sub-header">
+            <button class="back-btn" onclick="goToPage('home')">← HOME</button>
+        </div>
+        
+        <h2 class="page-title">첫 수업 준비물</h2>
+        
+        <div class="content-box">
+            <h3 style="font-size:16px; margin-bottom:15px;">Must Have</h3>
+            <ul class="info-list">
+                <li><span class="highlight">신분증 지참</span> (출결카드 발급용)</li>
+                <li>간단한 필기도구 및 노트</li>
+                <li>개인 백업용 USB 권장</li>
+            </ul>
+        </div>
+        
+        <div class="content-box">
+            <h3 style="font-size:16px; margin-bottom:15px;">Check Point</h3>
+            <p style="font-size:15px; color:#666; line-height:1.6;">
+                교재는 과정마다 상이합니다.<br>
+                첫날 인포데스크 또는 강의장에서 강사님 안내를 받아주세요.
+            </p>
+        </div>
+    </div>
+
+
+    <div id="page-rule" class="page">
+        <div class="sub-header">
+            <button class="back-btn" onclick="goToPage('home')">← HOME</button>
+        </div>
+
+        <h2 class="page-title">학원 생활 안내</h2>
+
+        <div class="content-box">
+            <h3 style="font-size:16px; margin-bottom:15px;">출결 규정</h3>
+            <ul class="info-list">
+                <li>국비과정 출석률 80% 필수</li>
+                <li>지각/조퇴 3회는 결석 1회로 산정</li>
+                <li>부득이한 결석 시 사전 연락 필수</li>
+            </ul>
+        </div>
+
+        <div class="content-box">
+            <h3 style="font-size:16px; margin-bottom:15px;">에티켓</h3>
+            <ul class="info-list">
+                <li>강의장 내 음료 외 음식물 반입 금지</li>
+                <li>빈 강의실 자습은 데스크 문의 후 가능</li>
+                <li>수업 시작 10분 전 입실 권장</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div id="page-map" class="page">
+        <div class="sub-header">
+            <button class="back-btn" onclick="goToPage('home')">← HOME</button>
+        </div>
+
+        <h2 class="page-title">오시는 길</h2>
+
+        <div class="content-box" style="text-align: center;">
+            <p style="font-size: 18px; font-weight: 700; margin-bottom: 10px;">홍대입구역 도보 3분</p>
+            <p style="color:#666; font-size:15px; margin-bottom: 20px;">서울 마포구 양화로 000</p>
+            
+            <a href="https://map.naver.com" target="_blank" style="
+                display: block;
+                width: 100%;
+                padding: 15px;
+                background-color: #F2F4F6;
+                color: #333;
+                border-radius: 12px;
+                text-decoration: none;
+                font-weight: 700;
+                font-size: 14px;">
+                네이버 지도로 보기 ↗
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 페이지 전환 함수
+        function goToPage(pageId) {
+            // 1. 모든 페이지 숨기기
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // 2. 원하는 페이지만 보이기
+            const target = document.getElementById(pageId);
+            target.classList.add('active');
+
+            // 3. 스크롤 맨 위로 올리기
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
